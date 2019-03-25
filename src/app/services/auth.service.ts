@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
-import { tap, catchError, map } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 const TOKEN_KEY = environment.token_storage_key;
@@ -99,7 +99,7 @@ export class AuthService {
 
     this.http.get(url)
       .pipe(
-        map((res: any) => this.healthState.next(res.status === 'success'))
+        tap((res: any) => this.healthState.next(res.status === 'success'))
       ).subscribe();
   }
 
