@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="jwt.pwa.boilerplate" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="jwt.pwa.boilerplate" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>JWT PWA Boilerplate</name>
     <description>An example app to test augusdogus/express-jwt-boilerplate.</description>
     <author email="the@aug.dog" href="https://github.com/AugusDogus/jwt-pwa-boilerplate">Augie Luebbers</author>
@@ -20,6 +20,7 @@
     <preference name="auto-hide-splash-screen" value="false" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreen" value="screen" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
         <allow-intent href="market:*" />
