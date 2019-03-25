@@ -11,7 +11,7 @@ export class HomePage {
   data = 'This is super secret information available only to members.';
 
   constructor(
-      private authService: AuthService
+      public authService: AuthService
   ) {}
 
   logout() {
