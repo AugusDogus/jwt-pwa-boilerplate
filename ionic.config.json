@@ -1,0 +1,7 @@
+{
+  "name": "jwt-pwa-boilerplate",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

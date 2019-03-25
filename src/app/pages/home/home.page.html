@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  Hello world!
+  <p>{{ data }}</p>
+  <p>Email: {{authService.user.email}}</p>
+  <p>Token: {{authService.user.token}}</p>
+
+  <ion-button expand="full" (click)="logout()">Logout</ion-button>
+</ion-content>
