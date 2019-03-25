@@ -8,7 +8,15 @@
   Hello world!
   <p>{{ data }}</p>
   <p>Email: {{authService.user.email}}</p>
-  <p>Token: {{authService.user.token}}</p>
+  <p>
+      Status:
+      <ng-container *ngIf="authService.getHealth(); else unhealthy">
+          <ion-badge color="success">Healthy</ion-badge>
+      </ng-container>
+      <ng-template #unhealthy>
+          <ion-badge color="danger">Unhealthy</ion-badge>
+      </ng-template>
+  </p>
 
   <ion-button expand="full" (click)="logout()">Logout</ion-button>
 </ion-content>

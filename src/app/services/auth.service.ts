@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 const TOKEN_KEY = environment.token_storage_key;
@@ -17,6 +17,7 @@ export class AuthService {
   url = environment.token_url;
   user = null;
   authenticationState = new BehaviorSubject(false);
+  healthState = new BehaviorSubject(null);
 
   constructor(
     private http: HttpClient,
@@ -26,6 +27,7 @@ export class AuthService {
     private alertController: AlertController
   ) {
     this.plt.ready().then(() => {
+      this.healthcheck();
       this.checkToken();
     });
   }
@@ -89,5 +91,19 @@ export class AuthService {
       buttons: ['OK']
     });
     alert.then(alert => alert.present());
+  }
+
+  healthcheck() {
+    const endpoint = '/healthcheck';
+    const url = this.url + endpoint;
+
+    this.http.get(url)
+      .pipe(
+        map((res: any) => this.healthState.next(res.status === 'success'))
+      ).subscribe();
+  }
+
+  getHealth() {
+    return this.healthState.value;
   }
 }
