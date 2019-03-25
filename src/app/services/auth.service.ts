@@ -17,6 +17,7 @@ export class AuthService {
   url = environment.token_url;
   user = null;
   authenticationState = new BehaviorSubject(false);
+  healthState = new BehaviorSubject(null);
 
   constructor(
     private http: HttpClient,
@@ -26,6 +27,7 @@ export class AuthService {
     private alertController: AlertController
   ) {
     this.plt.ready().then(() => {
+      this.healthcheck();
       this.checkToken();
     });
   }
@@ -89,5 +91,19 @@ export class AuthService {
       buttons: ['OK']
     });
     alert.then(alert => alert.present());
+  }
+
+  healthcheck() {
+    const endpoint = '/healthcheck';
+    const url = this.url + endpoint;
+
+    this.http.get(url)
+      .pipe(
+        tap((res: any) => this.healthState.next(res.status === 'success'))
+      ).subscribe();
+  }
+
+  getHealth() {
+    return this.healthState.value;
   }
 }
